@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel ="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <title>Search result</title>
+</head>
+<body>
+    <div class="container">
+        <ul class="list-group" id="tweets">
+
+            {%set css_class = 'list-group-item-info' %}
+            {% for element in content %}
+                {% if element['label'] == 'neg' %}
+                    {%set css_class = 'list-group-item-danger' %}
+                {% elif element['label'] == 'pos' %}
+                    {%set css_class = 'list-group-item-success' %}
+                {% endif %}
+                <li class="list-group-item {{ css_class }}">{{element['tweet']}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
